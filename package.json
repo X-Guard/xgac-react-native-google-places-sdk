@@ -53,7 +53,7 @@
   },
   "homepage": "https://github.com/Landeed/react-native-google-places-sdk#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://npm.pkg.github.com/"
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.2.2",
