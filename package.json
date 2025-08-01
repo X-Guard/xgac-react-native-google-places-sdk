@@ -1,5 +1,5 @@
 {
-  "name": "react-native-google-places-sdk",
+  "name": "@x-guard/react-native-google-places-sdk",
   "version": "0.3.1",
   "description": "Google Places SDK for React Native",
   "main": "lib/commonjs/index",

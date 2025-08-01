@@ -37,6 +37,7 @@ project.xcworkspace
 .idea
 .project
 .settings
+.npmrc
 local.properties
 android.iml
 
