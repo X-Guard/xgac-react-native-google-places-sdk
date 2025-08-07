@@ -252,11 +252,7 @@ class GooglePlacesSdk: NSObject {
     }
 
     let parsedFields = GMSPlaceFieldsFromFields(fields: fields)
-    let selectedFields: GMSPlaceField = parsedFields
-
-    let myProperties = [GMSPlaceProperty.addressComponents, GMSPlaceProperty.name, GMSPlaceProperty.openingHours, GMSPlaceProperty.coordinate, GMSPlaceProperty.photos, GMSPlaceProperty.plusCode, GMSPlaceProperty.dineIn, GMSPlaceProperty.userRatingsTotal, GMSPlaceProperty.takeout, GMSPlaceProperty.priceLevel, GMSPlaceProperty.phoneNumber, GMSPlaceProperty.curbsidePickup, GMSPlaceProperty.types, GMSPlaceProperty.placeID, GMSPlaceProperty.businessStatus, GMSPlaceProperty.viewport, GMSPlaceProperty.rating, GMSPlaceProperty.delivery, GMSPlaceProperty.formattedAddress, GMSPlaceProperty.website].map {$0.rawValue}
-
-    let fetchPlaceRequest = GMSFetchPlaceRequest(placeID: placeID, placeProperties: myProperties, sessionToken: nil)
+    let fetchPlaceRequest = GMSFetchPlaceRequest(placeID: placeID, placeProperties: parsedFields, sessionToken: self.sessionToken)
 
     client.fetchPlace(with: fetchPlaceRequest, callback: {(place: GMSPlace?, error: Error?) in
       guard let place = place, error == nil else {
