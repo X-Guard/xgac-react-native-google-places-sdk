@@ -8,7 +8,7 @@
 
 import GooglePlaces
 
-let PLACE_FIELD_MAP: NSDictionary = [
+let PLACE_FIELD_MAP: [String: GMSPlaceProperty] = [
   "name": GMSPlaceProperty.name,
   "placeID": GMSPlaceProperty.placeID,
   "plusCode": GMSPlaceProperty.plusCode,
