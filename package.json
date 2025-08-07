@@ -1,6 +1,6 @@
 {
-  "name": "react-native-google-places-sdk",
-  "version": "0.3.1",
+  "name": "@x-guard/react-native-google-places-sdk",
+  "version": "0.4.1",
   "description": "Google Places SDK for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -53,7 +53,7 @@
   },
   "homepage": "https://github.com/Landeed/react-native-google-places-sdk#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://npm.pkg.github.com/"
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.2.2",
