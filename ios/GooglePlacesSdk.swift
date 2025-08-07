@@ -199,7 +199,7 @@ class GooglePlacesSdk: NSObject {
 
       let mappedResults: [[String: Any]] = places.map { place in
         var dict: [String: Any] = [:]
-        dict["placeId"] = place.placeID ?? ""
+        dict["placeID"] = place.placeID ?? ""
         dict["name"] = place.name ?? ""
         dict["formattedAddress"] = place.formattedAddress ?? ""
         dict["types"] = place.types ?? []
