@@ -4,6 +4,7 @@ import type {
   Place,
   PlacePrediction,
   PredictionFiltersParam,
+  SearchPrediction,
 } from './types';
 
 const LINKING_ERROR =
@@ -15,13 +16,13 @@ const LINKING_ERROR =
 const GooglePlacesSdk = NativeModules.GooglePlacesSdk
   ? NativeModules.GooglePlacesSdk
   : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+    {},
+    {
+      get() {
+        throw new Error(LINKING_ERROR);
+      },
+    }
+  );
 
 export function initialize(apiKey: string) {
   if (!apiKey) return;
@@ -49,20 +50,20 @@ export async function fetchPlaceByID(
 export async function searchByText(
   query: string,
   filters: PredictionFiltersParam = {}
-): Promise<PlacePrediction[]> {
+): Promise<SearchPrediction[]> {
   const predictions = await GooglePlacesSdk.searchByText(query, filters);
 
   return predictions;
 }
 
 export async function searchNearby(
-options:{
-  latitude: number,
-  longitude: number,
-  radius: number,
-},
+  options: {
+    latitude: number,
+    longitude: number,
+    radius: number,
+  },
   includedTypes: Array<string> = []
-): Promise<any> {
+): Promise<SearchPrediction[]> {
   const places = await GooglePlacesSdk.searchNearby(options, includedTypes);
 
   return places;

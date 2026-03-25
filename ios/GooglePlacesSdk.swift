@@ -143,7 +143,7 @@ class GooglePlacesSdk: NSObject {
         dict["types"] = place.types ?? []
         dict["url"] = place.website ?? []
         if let coordinate = place.coordinate as CLLocationCoordinate2D? {
-          dict["location"] = ["lat": coordinate.latitude, "lng": coordinate.longitude]
+          dict["coordinate"] = ["lat": coordinate.latitude, "lng": coordinate.longitude]
         }
 
         return dict
@@ -205,7 +205,7 @@ class GooglePlacesSdk: NSObject {
         dict["types"] = place.types ?? []
         dict["url"] = place.website ?? []
         if let coordinate = place.coordinate as CLLocationCoordinate2D? {
-          dict["location"] = ["lat": coordinate.latitude, "lng": coordinate.longitude]
+          dict["coordinate"] = ["lat": coordinate.latitude, "lng": coordinate.longitude]
         }
 
         return dict
