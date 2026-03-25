@@ -165,8 +165,8 @@ class GooglePlacesSdkUtils {
 
     if (place.getLatLng() != null) {
       LatLng latLng = place.getLatLng();
-      map.putMap("coordinate", ParseLatLngSearchText(latLng));
-      map.putMap("location", ParseLatLngSearchText(latLng));
+      map.putMap("coordinate", ParseLatLng(latLng));
+      map.putMap("location", ParseLatLng(latLng));
     }
 
     if (place.getTypes() != null) {
@@ -220,14 +220,6 @@ class GooglePlacesSdkUtils {
     WritableMap map = Arguments.createMap();
     map.putDouble("latitude", latLng.latitude);
     map.putDouble("longitude", latLng.longitude);
-
-    return map;
-  }
-
-  static WritableMap ParseLatLngSearchText(LatLng latLng) {
-    WritableMap map = Arguments.createMap();
-    map.putDouble("lat", latLng.latitude);
-    map.putDouble("lng", latLng.longitude);
 
     return map;
   }
