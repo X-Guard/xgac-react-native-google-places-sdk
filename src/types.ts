@@ -9,6 +9,24 @@ export type PlacePrediction = {
   distanceMeters: number;
 };
 
+export type SearchPrediction = {
+  description: string;
+  placeID: string;
+  types: string[];
+  distanceMeters: number;
+  addressComponents:
+  | {
+    types: string[];
+    name: string;
+    shortName: string;
+  }[]
+  | null;
+  coordinate: LatLng | null;
+  formattedAddress: string | null;
+  name: string | null;
+  phoneNumber: string | null;
+};
+
 export type LatLng = {
   latitude: number;
   longitude: number;
@@ -50,12 +68,12 @@ export type Place = {
   viewport: (LocationBounds & { valid: boolean }) | null;
   formattedAddress: string | null;
   addressComponents:
-    | {
-        types: string[];
-        name: string;
-        shortName: string;
-      }[]
-    | null;
+  | {
+    types: string[];
+    name: string;
+    shortName: string;
+  }[]
+  | null;
   attributions: string | null;
   rating: number;
   userRatingsTotal: number;
