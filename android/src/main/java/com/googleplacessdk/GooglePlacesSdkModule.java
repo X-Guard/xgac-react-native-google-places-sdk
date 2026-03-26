@@ -129,6 +129,7 @@ public class GooglePlacesSdkModule extends ReactContextBaseJavaModule {
     }
 
     SearchNearbyRequest request = GooglePlacesSdkUtils.buildSearchNearByRequest(options,
+      fields,
       sessionToken);
 
     placesClient.searchNearby(request)

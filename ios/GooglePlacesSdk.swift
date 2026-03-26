@@ -123,6 +123,59 @@ class GooglePlacesSdk: NSObject {
 
     let request = GMSPlaceSearchByTextRequest(textQuery: query, placeProperties: properties);
 
+    // Add all filterOptions to the request if possible
+    for (key, value) in filterOptions {
+      guard let keyString = key as? String else { continue }
+      switch keyString {
+      case "includedType":
+        if let type = value as? String {
+          request.includeType = type
+        }
+      case "isStrictTypeFiltering":
+        if let isStrict = value as? Bool {
+          request.isStrictTypeFiltering = isStrict
+        }
+      case "maxResultCount":
+        if let maxCount = value as? Int {
+          request.maxResultCount = maxCount
+        }
+      case "minRating":
+        if let minRating = value as? Double {
+          request.minRating = minRating
+        }
+      case "rankPreference":
+        if let rankPreference = value as? GMSPlaceSearchRankPreference {
+          request.rankPreference = rankPreference
+        } 
+      case "regionCode":
+        if let regionCode = value as? String {
+          request.regionCode = regionCode
+        }
+      case "isOpenNow":
+        if let isOpenNow = value as? Bool {
+          request.isOpenNow = isOpenNow
+        }
+      case "locationBias":
+        if let bias = value as? GMSPlaceLocationBiasOption {
+          request.locationBias = bias
+        }
+      case "locationRestriction":
+        if let restriction = value as? GMSPlaceLocationRestrictionOption {
+          request.locationRestriction = restriction
+        }
+      case "shouldIncludePureServiceAreaBusinesses":
+        if let shouldInclude = value as? Bool {
+          request.shouldIncludePureServiceAreaBusinesses = shouldInclude
+        }
+      case "priceLevels":
+        if let priceLevels = value as? [GMSPlacePriceLevel] {
+          request.priceLevels = priceLevels
+        }
+      default:
+        continue
+      }
+    }
+
     // Perform the search
     client.searchByText(with: request) { results, error in
       if let error = error {
@@ -155,7 +208,12 @@ class GooglePlacesSdk: NSObject {
 
 
   @objc
-  func searchNearby(_ options: NSDictionary, includedTypes:[String],  resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
+  func searchNearby(
+    _ options: NSDictionary,     
+    filterOptions: NSDictionary, 
+    resolver resolve: @escaping RCTPromiseResolveBlock, 
+    rejecter reject: @escaping RCTPromiseRejectBlock
+    ) {
 
     guard let latitude = options["latitude"] as? Double,
           let longitude = options["longitude"] as? Double,
@@ -184,7 +242,42 @@ class GooglePlacesSdk: NSObject {
 
     var request = GMSPlaceSearchNearbyRequest(locationRestriction: circularLocationRestriction, placeProperties: placeProperties)
 
-    request.includedTypes = includedTypes;
+    for (key, value) in options {
+      guard let keyString = key as? String else { continue }
+      switch keyString {
+      case "includedTypes":
+        if let types = value as? [String] {
+          request.includedTypes = types
+        }
+      case "excludedTypes":
+        if let types = value as? [String] {
+          request.excludedTypes = types
+        }
+      case "includedPrimaryTypes":
+        if let types = value as? [String] {
+          request.includedPrimaryTypes = types
+        }
+      case "excludedPrimaryTypes":
+        if let types = value as? [String] {
+          request.excludedPrimaryTypes = types
+        }
+      case "maxResultCount":
+        if let maxCount = value as? Int {
+          request.maxResultCount = maxCount
+        }
+      case "rankPreference":
+        if let rankPreference = value as? GMSPlaceSearchRankPreference {
+          request.rankPreference = rankPreference
+        }
+      case "regionCode":
+        if let regionCode = value as? String {
+          request.regionCode = regionCode
+        }
+      default:
+        continue
+      }
+    }
+
     // Perform the search
     client.searchNearby(with: request) { results, error in
       if let error = error {

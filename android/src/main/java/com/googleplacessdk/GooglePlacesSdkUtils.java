@@ -63,13 +63,63 @@ class GooglePlacesSdkUtils {
       Place.Field.WEBSITE_URI, Place.Field.ADDRESS_COMPONENTS
     );
 
-    SearchByTextRequest.Builder builder = SearchByTextRequest.builder(query, placeFields).setMaxResultCount(10);
+    SearchByTextRequest.Builder builder = SearchByTextRequest.builder(query, placeFields);
+    if (options.hasKey("includeType")) {
+      String type = options.getString("includeType");
+      builder.setIncludedType(type);
+    }
+
+    if (options.hasKey("locationBias")) {
+      RectangularBounds bounds = ParseLocationBounds(options.getMap("locationBias"));
+      if (bounds != null) builder.setLocationBias(bounds);
+    }
+
+    if (options.hasKey("locationRestriction")) {
+      RectangularBounds bounds = ParseLocationBounds(options.getMap("locationRestriction"));
+      if (bounds != null) builder.setLocationRestriction(bounds);
+    }
+
+    if (options.hasKey("maxResultCount")) {
+      int maxResultCount = options.getInt("maxResultCount");
+      builder.setMaxResultCount(maxResultCount);
+    } 
+
+    if (options.hasKey("minRating")) {
+      double minRating = options.getDouble("minRating");
+      builder.setMinRating(minRating);
+    }
+
+    if (options.hasKey("isOpenNow")) {
+      boolean isOpenNow = options.getBoolean("isOpenNow");
+      builder.setOpenNow(isOpenNow);
+    }
+
+    if (options.hasKey("priceLevels")) {
+      ArrayList<Integer> priceLevels = options.getArray("priceLevels").toArrayList();
+      builder.setPriceLevels(priceLevels);
+    }
+
+    if (options.hasKey("rankReference")) {
+      String rankReference = options.getString("rankReference");
+      builder.setRankReference(rankReference);
+    }
+
+    if (options.hasKey("regionCode")) {
+      String regionCode = options.getString("regionCode");
+      builder.setRegionCode(regionCode);
+    }
+
+    if (options.hasKey("isStrictTypeFiltering")) {
+      boolean isStrictTypeFiltering = options.getBoolean("isStrictTypeFiltering");
+      builder.setStrictTypeFiltering(isStrictTypeFiltering);
+    }
 
     return builder
       .build();
   }
 
   static SearchNearbyRequest buildSearchNearByRequest(ReadableMap options,
+    ReadableMap filterOptions,
                                                       AutocompleteSessionToken sessionToken) {
 
     // Specify the list of fields to return.
@@ -82,6 +132,36 @@ class GooglePlacesSdkUtils {
     CircularBounds circle = CircularBounds.newInstance(center, /* radius = */  options.getDouble("radius"));
 
     SearchNearbyRequest.Builder builder = SearchNearbyRequest.builder(circle, placeFields).setMaxResultCount(10);
+
+    if (filterOptions.hasKey("includedTypes")) {
+      ArrayList<String> types = filterOptions.getArray("includedTypes").toArrayList();
+      builder.setIncludedTypes(types);
+    }
+    if (filterOptions.hasKey("excludedTypes")) {
+      ArrayList<String> types = filterOptions.getArray("excludedTypes").toArrayList();
+      builder.setExcludedTypes(types);
+    }
+    if (filterOptions.hasKey("includedPrimaryTypes")) {
+      ArrayList<String> types = filterOptions.getArray("includedPrimaryTypes").toArrayList();
+      builder.setIncludedPrimaryTypes(types);
+    }
+    if (filterOptions.hasKey("excludedPrimaryTypes")) {
+      ArrayList<String> types = filterOptions.getArray("excludedPrimaryTypes").toArrayList();
+      builder.setExcludedPrimaryTypes(types);
+    }
+    if (filterOptions.hasKey("maxResultCount")) {
+      int maxResultCount = filterOptions.getInt("maxResultCount");
+      builder.setMaxResultCount(maxResultCount);
+    }
+    if (filterOptions.hasKey("rankPreference")) {
+      String rankReference = filterOptions.getString("rankReference");
+      builder.setRankReference(rankReference);
+    }
+    if (filterOptions.hasKey("regionCode")) {
+      String regionCode = filterOptions.getString("regionCode");
+      builder.setRegionCode(regionCode);
+    }
+
 
     return builder
       .build();

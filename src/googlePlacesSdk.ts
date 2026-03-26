@@ -4,7 +4,9 @@ import type {
   Place,
   PlacePrediction,
   PredictionFiltersParam,
+  SearchNearbyFiltersParam,
   SearchPrediction,
+  SearchTextFiltersParam,
 } from './types';
 
 const LINKING_ERROR =
@@ -49,7 +51,7 @@ export async function fetchPlaceByID(
 
 export async function searchByText(
   query: string,
-  filters: PredictionFiltersParam = {}
+  filters: SearchTextFiltersParam = {}
 ): Promise<SearchPrediction[]> {
   const predictions = await GooglePlacesSdk.searchByText(query, filters);
 
@@ -62,9 +64,9 @@ export async function searchNearby(
     longitude: number,
     radius: number,
   },
-  includedTypes: Array<string> = []
+  filters: SearchNearbyFiltersParam = {}
 ): Promise<SearchPrediction[]> {
-  const places = await GooglePlacesSdk.searchNearby(options, includedTypes);
+  const places = await GooglePlacesSdk.searchNearby(options, filters);
 
   return places;
 }

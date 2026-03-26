@@ -25,7 +25,7 @@ RCT_EXTERN_METHOD(startNewSession:(RCTPromiseResolveBlock)resolve
 RCT_EXTERN_METHOD(clearSession:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(searchNearby:  (NSDictionary *)options
-                  includedTypes: (NSArray*)includedTypes
+                  filterOptions: (NSDictionary *)filterOptions
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 
