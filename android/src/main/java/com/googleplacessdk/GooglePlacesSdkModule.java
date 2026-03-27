@@ -116,7 +116,7 @@ public class GooglePlacesSdkModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void searchNearby(ReadableMap options, ReadableArray fields, final Promise promise) {
+  public void searchNearby(ReadableMap options, ReadableMap fields, final Promise promise) {
     if (!Places.isInitialized()) {
       promise.reject(
         "-1",

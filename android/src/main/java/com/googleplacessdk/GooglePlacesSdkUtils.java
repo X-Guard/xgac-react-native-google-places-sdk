@@ -95,13 +95,13 @@ class GooglePlacesSdkUtils {
     }
 
     if (options.hasKey("priceLevels")) {
-      ArrayList<Integer> priceLevels = options.getArray("priceLevels").toArrayList();
+      ArrayList priceLevels = options.getArray("priceLevels").toArrayList();
       builder.setPriceLevels(priceLevels);
     }
 
-    if (options.hasKey("rankReference")) {
-      String rankReference = options.getString("rankReference");
-      builder.setRankReference(rankReference);
+    if (options.hasKey("rankPreference")) {
+      SearchByTextRequest.RankPreference rankPreference = SearchByTextRequest.RankPreference.valueOf(options.getString("rankPreference"));
+      builder.setRankPreference(rankPreference);
     }
 
     if (options.hasKey("regionCode")) {
@@ -134,34 +134,33 @@ class GooglePlacesSdkUtils {
     SearchNearbyRequest.Builder builder = SearchNearbyRequest.builder(circle, placeFields).setMaxResultCount(10);
 
     if (filterOptions.hasKey("includedTypes")) {
-      ArrayList<String> types = filterOptions.getArray("includedTypes").toArrayList();
+      ArrayList types = filterOptions.getArray("includedTypes").toArrayList();
       builder.setIncludedTypes(types);
     }
     if (filterOptions.hasKey("excludedTypes")) {
-      ArrayList<String> types = filterOptions.getArray("excludedTypes").toArrayList();
+      ArrayList types = filterOptions.getArray("excludedTypes").toArrayList();
       builder.setExcludedTypes(types);
     }
     if (filterOptions.hasKey("includedPrimaryTypes")) {
-      ArrayList<String> types = filterOptions.getArray("includedPrimaryTypes").toArrayList();
+      ArrayList types = filterOptions.getArray("includedPrimaryTypes").toArrayList();
       builder.setIncludedPrimaryTypes(types);
     }
     if (filterOptions.hasKey("excludedPrimaryTypes")) {
-      ArrayList<String> types = filterOptions.getArray("excludedPrimaryTypes").toArrayList();
+      ArrayList types = filterOptions.getArray("excludedPrimaryTypes").toArrayList();
       builder.setExcludedPrimaryTypes(types);
     }
     if (filterOptions.hasKey("maxResultCount")) {
       int maxResultCount = filterOptions.getInt("maxResultCount");
       builder.setMaxResultCount(maxResultCount);
     }
-    if (filterOptions.hasKey("rankPreference")) {
-      String rankReference = filterOptions.getString("rankReference");
-      builder.setRankReference(rankReference);
+    if (options.hasKey("rankPreference")) {
+      SearchNearbyRequest.RankPreference rankPreference = SearchNearbyRequest.RankPreference.valueOf(options.getString("rankPreference"));
+      builder.setRankPreference(rankPreference);
     }
     if (filterOptions.hasKey("regionCode")) {
       String regionCode = filterOptions.getString("regionCode");
       builder.setRegionCode(regionCode);
     }
-
 
     return builder
       .build();
