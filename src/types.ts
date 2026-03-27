@@ -45,6 +45,30 @@ export type PredictionFiltersParam = {
   origin?: LatLng;
 };
 
+export type SearchTextFiltersParam = {
+  includeType?: string;
+  isStrictTypeFiltering?: boolean;
+  maxResultCount?: number;
+  minRating?: number;
+  rankPreference?: 'DISTANCE' | 'RELEVANCE';
+  regionCode?: string;
+  isOpenNow?: boolean;
+  locationBias?: LocationBounds;
+  locationRestriction?: LocationBounds;
+  shouldIncludePureServiceAreaBusinesses?: boolean;
+  priceLevels?: number[];
+};
+
+export type SearchNearbyFiltersParam = {
+  includedTypes?: string[];
+  excludedTypes?: string[];
+  includedPrimaryTypes?: string[];
+  excludedPrimaryTypes?: string[];
+  maxResultCount?: number;
+  rankPreference?: 'DISTANCE' | 'RELEVANCE';
+  regionCode?: string;
+};
+
 export type FieldsParam = (typeof PLACE_FIELDS)[keyof typeof PLACE_FIELDS][];
 
 export type AtmosphereCategoryStatus = 'TRUE' | 'FALSE' | 'UNKNOWN';

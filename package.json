@@ -1,6 +1,6 @@
 {
   "name": "@x-guard/react-native-google-places-sdk",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "Google Places SDK for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -45,15 +45,15 @@
     "typescript",
     "autocomplete"
   ],
-  "repository": "https://github.com/Landeed/react-native-google-places-sdk",
+  "repository": "https://github.com/X-Guard/xgac-react-native-google-places-sdk.git",
   "author": "Farid Ansari <faridansari771277@gmail.com> (https://github.com/Kroniac)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Landeed/react-native-google-places-sdk/issues"
+    "url": "https://github.com/X-Guard/xgac-react-native-google-places-sdk/issues"
   },
-  "homepage": "https://github.com/Landeed/react-native-google-places-sdk#readme",
+  "homepage": "https://github.com/X-Guard/xgac-react-native-google-places-sdk#readme",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "@x-guard:registry": "https://npm.pkg.github.com/"
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.2.2",
