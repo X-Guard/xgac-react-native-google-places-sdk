@@ -15,12 +15,12 @@ export type SearchPrediction = {
   types: string[];
   distanceMeters: number;
   addressComponents:
-  | {
-    types: string[];
-    name: string;
-    shortName: string;
-  }[]
-  | null;
+    | {
+        types: string[];
+        name: string;
+        shortName: string;
+      }[]
+    | null;
   coordinate: LatLng | null;
   formattedAddress: string | null;
   name: string | null;
@@ -55,7 +55,6 @@ export type SearchTextFiltersParam = {
   isOpenNow?: boolean;
   locationBias?: LocationBounds;
   locationRestriction?: LocationBounds;
-  shouldIncludePureServiceAreaBusinesses?: boolean;
   priceLevels?: number[];
 };
 
@@ -92,12 +91,12 @@ export type Place = {
   viewport: (LocationBounds & { valid: boolean }) | null;
   formattedAddress: string | null;
   addressComponents:
-  | {
-    types: string[];
-    name: string;
-    shortName: string;
-  }[]
-  | null;
+    | {
+        types: string[];
+        name: string;
+        shortName: string;
+      }[]
+    | null;
   attributions: string | null;
   rating: number;
   userRatingsTotal: number;

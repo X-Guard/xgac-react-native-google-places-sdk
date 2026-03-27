@@ -129,7 +129,7 @@ class GooglePlacesSdk: NSObject {
       switch keyString {
       case "includedType":
         if let type = value as? String {
-          request.includeType = type
+          request.includedType = type
         }
       case "isStrictTypeFiltering":
         if let isStrict = value as? Bool {
@@ -137,14 +137,14 @@ class GooglePlacesSdk: NSObject {
         }
       case "maxResultCount":
         if let maxCount = value as? Int {
-          request.maxResultCount = maxCount
+            request.maxResultCount = Int32(maxCount)
         }
       case "minRating":
         if let minRating = value as? Double {
-          request.minRating = minRating
+            request.minRating = Float(minRating)
         }
       case "rankPreference":
-        if let rankPreference = value as? GMSPlaceSearchRankPreference {
+        if let rankPreference = value as? GMSPlaceSearchByTextRankPreference {
           request.rankPreference = rankPreference
         } 
       case "regionCode":
@@ -156,19 +156,15 @@ class GooglePlacesSdk: NSObject {
           request.isOpenNow = isOpenNow
         }
       case "locationBias":
-        if let bias = value as? GMSPlaceLocationBiasOption {
+        if let bias = value as? GMSPlaceLocationBias {
           request.locationBias = bias
         }
       case "locationRestriction":
-        if let restriction = value as? GMSPlaceLocationRestrictionOption {
+        if let restriction = value as? GMSPlaceLocationRestriction {
           request.locationRestriction = restriction
         }
-      case "shouldIncludePureServiceAreaBusinesses":
-        if let shouldInclude = value as? Bool {
-          request.shouldIncludePureServiceAreaBusinesses = shouldInclude
-        }
       case "priceLevels":
-        if let priceLevels = value as? [GMSPlacePriceLevel] {
+        if let priceLevels = value as? [NSNumber] {
           request.priceLevels = priceLevels
         }
       default:
@@ -266,7 +262,7 @@ class GooglePlacesSdk: NSObject {
           request.maxResultCount = maxCount
         }
       case "rankPreference":
-        if let rankPreference = value as? GMSPlaceSearchRankPreference {
+        if let rankPreference = value as? GMSPlaceSearchNearbyRankPreference {
           request.rankPreference = rankPreference
         }
       case "regionCode":
